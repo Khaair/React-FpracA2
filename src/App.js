@@ -1,37 +1,40 @@
 import React,{useState}from 'react'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link,Route,Routes } from 'react-router-dom';
 import './App.css';
-import Avatarr from './Components/Avatarr';
-import Child from './Components/Child';
-import DataShow from './Components/DataShow';
-import ReactSelect from './Components/ReactSelect';
-import Table from './Components/Table';
-import ToolTip from './Components/ToolTip';
-import UseEff from './Components/UseEff';
+import Home from './Components/Home';
+import Formm from './Components/Formm';
+
+
 
 
 
 function App() {
 
-  
-const [show,setShow] = useState("")
+  const [formdata,setFormdata] = useState([])
 
-console.log(show,"show")
+  console.log(formdata,"from theke app")
 
-const handleChaild = (childdata)=>{
-  console.log(childdata,"App")
-  setShow(childdata)
+
+const fetchdataa =(child)=>{
+  setFormdata([...formdata,child])
+
 }
 
   return (
     <div className="App">
-      {/* <UseEff/> */}
-      {/* <Table/> */}
+        <nav className="navv">
+        <ul>
+         <li><Link to="/" className="ll">View Data</Link></li>
+         <li><Link to="/Form" className="ll">Add Data</Link></li>
+        </ul>
+     </nav>
 
-      <Child propchild = {handleChaild} />
-      <DataShow show = {show}/>
-      <ReactSelect/>
-      <ToolTip/>
+    <Routes>
+    <Route path="/" element= {<Home data={formdata}/>}/>
+    <Route path="/Form" element= {<Formm fetchdataa = {fetchdataa}/>}/>
+    </Routes>
+
     </div>
   );
 }
