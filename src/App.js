@@ -1,23 +1,37 @@
-import logo from './logo.svg';
+import React,{useState}from 'react'
+
 import './App.css';
+import Avatarr from './Components/Avatarr';
+import Child from './Components/Child';
+import DataShow from './Components/DataShow';
+import ReactSelect from './Components/ReactSelect';
+import Table from './Components/Table';
+import ToolTip from './Components/ToolTip';
+import UseEff from './Components/UseEff';
+
+
 
 function App() {
+
+  
+const [show,setShow] = useState("")
+
+console.log(show,"show")
+
+const handleChaild = (childdata)=>{
+  console.log(childdata,"App")
+  setShow(childdata)
+}
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <UseEff/> */}
+      {/* <Table/> */}
+
+      <Child propchild = {handleChaild} />
+      <DataShow show = {show}/>
+      <ReactSelect/>
+      <ToolTip/>
     </div>
   );
 }
