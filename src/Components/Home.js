@@ -1,7 +1,4 @@
 import React from 'react';
-import {Form } from "react-bootstrap";
-import Select from "react-select";
-import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
 
 export default function Home({data,DeleteFn}) {
@@ -24,7 +21,7 @@ export default function Home({data,DeleteFn}) {
           {data.length && data.map((el, ind) => {
             return (
               <tr key={ind}>
-                <th scope="row">{ind + 1}</th>
+                <td>{ind+1}</td>
                 <td>{el.firstname}</td>
                 <td>{el.lastname}</td>
                 <td>{el.username}</td>

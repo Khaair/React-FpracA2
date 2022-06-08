@@ -7,9 +7,6 @@ import Formm from './Components/Formm';
 import EditForm from './Components/EditForm';
 
 
-
-
-
 function App() {
 
   const [formdata,setFormdata] = useState([])
@@ -22,14 +19,10 @@ const fetchdataa =(child)=>{
 }
 
 
-const Updatedata =(updata)=>{
 
-     console.log(updata,'up data peyechi');
-
-
-  let res = formdata.filter((ell,idd)=>idd!=updata.id)
-  setFormdata([...formdata,{firstname:updata.firstname,lastname:updata.lastname,username:updata.username}])
-  
+const UpdateData=(upData)=>{
+  let res=formdata.filter((eld,indd)=> indd!=upData.id);
+  setFormdata([...res,{firstname:upData.firstname,lastname:upData.lastname,username:upData.username}]);
 }
 
 
@@ -50,7 +43,7 @@ const DeleteFn=(d)=>{
     <Routes>
     <Route path="/" element= {<Home data={formdata} DeleteFn={DeleteFn}/>}/>
     <Route path="/Form" element= {<Formm fetchdataa = {fetchdataa}/>}/>
-    <Route path="/edit/:id" element= {<EditForm data = {formdata} fetchdataa = {Updatedata}/>}/>
+    <Route path="/edit/:id" element= {<EditForm data = {formdata} updatedata = {UpdateData} fetchdataa = {fetchdataa}/>}/>
 
 
     </Routes>

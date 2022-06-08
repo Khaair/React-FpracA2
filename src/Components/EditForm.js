@@ -35,9 +35,10 @@ export default function EditForm(props) {
 
 
     const obj = {
+        id,
         firstname,
         lastname,
-        username
+        username,
 
     }
 
@@ -48,8 +49,8 @@ export default function EditForm(props) {
 
   const handleSubmit =()=>{
       setData(obj)
-
-     props.fetchdataa(obj)
+      props.updatedata(obj)
+      history('/')
   }
 
   return (
