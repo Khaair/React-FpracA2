@@ -1,25 +1,34 @@
-import React, {useState }from "react";
+import React, {useState,useEffect }from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
+import { useParams,useNavigate } from "react-router-dom";
 import Select from "react-select";
-import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
-export default function Formm(props) {
+export default function EditForm(props) {
+     
+    let {id} = useParams();
+    let history = useNavigate();
+
+    console.log(id,'iddddd',props.data)
+
+
 
     const [firstname,setFirstname]= useState('')
     const [lastname,setLastname]= useState('')
     const [username,setUsername]= useState('')
 
-      
-        const [msg,setMsg]= useState('Every field must requird!"')
+    const [data,setData]= useState('')
+    
 
+    console.log(data,"dataa")
 
-    console.log(msg,"msgggg")
+    useEffect(()=>{
 
-    let history=useNavigate();
+     let element = props.data[id]
 
-
+        setFirstname(element.firstname)
+        setLastname(element.lastname)
+        setUsername(element.username)
+    },[])
 
 
 
@@ -32,42 +41,20 @@ export default function Formm(props) {
 
     }
 
+    console.log(obj,'edit obj')
 
 
 
-  const handleSubmit =(e)=>{
-    
 
-    
-    if(firstname.length && lastname.length && username.length){
-      props.fetchdataa(obj)
+  const handleSubmit =()=>{
+      setData(obj)
 
-      setFirstname('')
-      setLastname('')
-      setUsername('')
-      history('/')
-
-    }
-    else{
-    
-        setMsg("Every field must requird!")
-        notify()
-      
-     
-      
-    
-    }
-    }
-
-  const notify = () => toast(msg);
-
+     props.fetchdataa(obj)
+  }
 
   return (
     <>
       <div style={{ margin: "20px" }}>
-      <ToastContainer />
-
-
         <Form>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="2">
@@ -97,9 +84,8 @@ export default function Formm(props) {
           </Form.Group>
         </Form>
         <Button onClick={handleSubmit} style={{ marginLeft: "150px" }} variant="primary">
-          Submit
+          Update
         </Button>{" "}
-
       </div>
     </>
   );

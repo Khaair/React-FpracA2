@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
 import {Form } from "react-bootstrap";
 import Select from "react-select";
-import Table from 'react-bootstrap/Table'
+import Table from 'react-bootstrap/Table';
+import { Link } from 'react-router-dom';
 
-export default function Home({data}) {
+export default function Home({data,DeleteFn}) {
 
   console.log(data,'Home')
   return (
@@ -27,6 +28,11 @@ export default function Home({data}) {
                 <td>{el.firstname}</td>
                 <td>{el.lastname}</td>
                 <td>{el.username}</td>
+                <td>
+                <button onClick={()=>DeleteFn(ind)} type="button" class="btn btn-danger">Delete</button>
+               <Link to={`/edit/${ind}`}> <button style={{marginLeft:'13px'}} type="button" class="btn btn-success">Edit</button></Link>
+                </td>
+
               </tr>
             )
 
