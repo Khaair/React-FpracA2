@@ -1,15 +1,17 @@
-import React,{useState}from 'react'
+import React,{useEffect, useState}from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link,Route,Routes } from 'react-router-dom';
 import './App.css';
 import Home from './Components/Home';
 import Formm from './Components/Formm';
 import EditForm from './Components/EditForm';
+import Basic from './Components/Basic';
 
 
 function App() {
 
   const [formdata,setFormdata] = useState([])
+
 
 
 
@@ -31,6 +33,30 @@ const DeleteFn=(d)=>{
   setFormdata(res)
 }
 
+const local_storage_key = "contact";
+
+
+
+useEffect(() => {
+  const retrivedata= JSON.parse(localStorage.getItem(local_storage_key));
+  if(retrivedata){
+  setFormdata(retrivedata)
+
+  }
+ }, []);
+
+ useEffect(() => {
+   localStorage.setItem(local_storage_key,JSON.stringify(formdata));
+ }, [formdata]);
+
+
+
+ 
+
+ 
+
+
+
   return (
     <div className="App">
         <nav className="navv">
@@ -47,6 +73,8 @@ const DeleteFn=(d)=>{
 
 
     </Routes>
+
+    
 
     
 
